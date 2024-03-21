@@ -1,5 +1,7 @@
 #include <iostream>
-#include "RK.h"
+#include "NumeralCal/RK/RK.h"
+
+#include "gtest/gtest.h"
 template <Float T>
 struct F {
 static T run(T x, T y) {
@@ -7,7 +9,7 @@ static T run(T x, T y) {
 }
 };
 
-int main() {
+TEST(TestRK, Dy_y) {
   float x = 0, y = 1, h = 0.01;
   std::array<float, 2> k;
   constexpr ButcherTable<float, 2> rk2 = {{0.5, 0.5}, {1}, {1}};
@@ -24,6 +26,4 @@ int main() {
     x += h;
     std::cout << x << ", " << y << std::endl;
   }
-
-  return 1;
 }

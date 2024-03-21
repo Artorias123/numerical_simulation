@@ -34,3 +34,6 @@
 # Tmp vim files
 *.swp
 *.swo
+
+# CMake file
+build
