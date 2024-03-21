@@ -23,7 +23,7 @@ function(cc_test)
   set(multiValueArgs SRCS DEPS)
   cmake_parse_arguments(CC_LIB "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 #  message("${CC_LIB_NAME}, ${CC_LIB_SRCS}, ${CC_LIB_DEPS}")
-  set(EXEC "${CC_LIB_NAME}_EXEC")
+  set(EXEC "${CC_LIB_NAME}")
   add_executable(${EXEC} ${CC_LIB_SRCS})
 
   target_link_libraries(${EXEC} PRIVATE ${GTEST_LIBRARIES} GTest::gtest_main Threads::Threads)

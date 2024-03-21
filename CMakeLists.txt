@@ -14,22 +14,6 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 enable_testing()
 
-# 配置clang-tidy
-# set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE}")
-add_custom_target(
-    clang-tidy
-    COMMAND run-clang-tidy -fix -format -quiet -j 4
-    COMMENT "Running clang-tidy"
-)
-
-# 配置iwyu
-find_program(IWYU_PATH NAMES include-what-you-use include-what-you-use)
-add_custom_target(
-    iwyu
-    COMMAND python3 ${CMAKE_SOURCE_DIR}/build_tools/iwyu_tool.py -p . -- -Xiwyu --transitive_includes_only -Xiwyu --cxx17ns -Xiwyu --mapping_file=${CMAKE_SOURCE_DIR}/build_tools/iwyu.imp
-    COMMENT "Running iwyu"
-)
-
 add_custom_target(
     clang-format
     COMMAND bash ${CMAKE_SOURCE_DIR}/build_tools/clang_format.sh ${CMAKE_SOURCE_DIR}
